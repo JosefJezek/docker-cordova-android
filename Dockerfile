@@ -11,7 +11,8 @@ RUN cd /opt && \
     ls -d */ | sed 's/\/*$//g' | xargs -I{} mv {} gradle && \
     rm gradle*.zip && \
     mkdir -p ~/.gradle && \
-    echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+    echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties && \
+    echo "org.gradle.jvmargs=-Xmx1536m" >> ~/.gradle/gradle.properties
 
 # Download and install Android SDK
 # https://developer.android.com/studio#command-tools
