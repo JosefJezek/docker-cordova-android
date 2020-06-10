@@ -74,6 +74,8 @@ ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/tools
 ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/platform-tools
 # https://cordova.apache.org/docs/en/latest/reference/cordova-cli/#cordova-telemetry-command
 ENV CI=true
+# For GC overhead limit exceeded issue
+ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 
 # Android SDK Build Tools:
 #   https://developer.android.com/studio/releases/build-tools.html
