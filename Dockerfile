@@ -86,8 +86,12 @@ ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForH
 #   https://developer.android.com/studio/releases/build-tools.html
 # To find the latest version's label:
 #   sdkmanager --list|grep build-tools
+ARG ANDROID_TARGET_SDK_VERSION=28
 ARG ANDROID_BUILD_TOOLS_VERSION=28.0.3
 RUN yes | sdkmanager --licenses && \
     sdkmanager --update && \
-    sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" && \
+    sdkmanager "platforms;android-${ANDROID_TARGET_SDK_VERSION}" \
+               "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
+               "platform-tools" \
+               "tools" && \
     sdkmanager --uninstall "emulator"
