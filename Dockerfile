@@ -3,7 +3,9 @@ FROM openjdk:8
 
 # Download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=6.5
+# For Cordova Android v8.1.0
+# https://github.com/apache/cordova-android/blob/8.1.x/test/wrapper.gradle
+ARG GRADLE_VERSION=4.10.3
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
