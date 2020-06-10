@@ -3,7 +3,7 @@ FROM openjdk:8
 
 # Download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=6.4.1
+ARG GRADLE_VERSION=6.5
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
@@ -12,6 +12,7 @@ RUN cd /opt && \
     rm gradle*.zip && \
     mkdir -p ~/.gradle && \
     echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties && \
+    # The setting is particularly useful for tweaking memory settings.
     echo "org.gradle.jvmargs=-Xmx1536m" >> ~/.gradle/gradle.properties
 
 # Download and install Android SDK
@@ -75,7 +76,8 @@ ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/tools
 ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/platform-tools
 # https://cordova.apache.org/docs/en/latest/reference/cordova-cli/#cordova-telemetry-command
 ENV CI=true
-# For GC overhead limit exceeded issue
+# For Docker memory limits
+# https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits
 ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 
 # Android SDK Build Tools:
