@@ -21,3 +21,10 @@ pipelines:
           - npm test
           - npm run build
 ```
+
+## Resources
+
+- https://github.com/Jigsaw-Code/outline-client/blob/master/tools/build/Dockerfile
+- https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/Dockerfile
+- https://github.com/woahbase/alpine-android/blob/master/Dockerfile_x86_64
+- https://github.com/apache/cordova-android/tree/master/test
